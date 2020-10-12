@@ -6,6 +6,6 @@ app:
     image: commercemvp
     port: 8095
   service:
-    type: ClusterIP
+    type: LoadBalancer
     port: 8095
   version: v1
