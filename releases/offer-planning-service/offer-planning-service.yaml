@@ -9,7 +9,7 @@ metadata:
 spec:
   releaseName: offer-planning-service-service
   chart:
-    git: git@github.com:debjyoti-das/flux-helm
+    git: git@github.com:debjyoti-das/flux-helm-dsc
     path: charts/service
     ref: master
   values:
