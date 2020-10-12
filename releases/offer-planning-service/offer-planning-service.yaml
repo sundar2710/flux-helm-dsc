@@ -9,7 +9,7 @@ metadata:
 spec:
   releaseName: offer-planning-service-service
   chart:
-    git: git@github.com:debjyoti-das/flux-helm-dsc
+    git: git@github.com:sundar27/flux-helm-dsc
     path: charts/service
     ref: master
   values:
@@ -22,6 +22,6 @@ spec:
         image: prasantabarik/offer-planning-service:12
         port: 8094
       service:
-        type: ClusterIP
+        type: LoadBalancer
         port: 8094
       version: v1
