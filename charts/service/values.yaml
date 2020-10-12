@@ -1,0 +1,11 @@
+app:
+  name: commercemvp-service
+  group: commercemvp-service
+  replicaCount: 1
+  container:
+    image: commercemvp
+    port: 8095
+  service:
+    type: ClusterIP
+    port: 8095
+  version: v1

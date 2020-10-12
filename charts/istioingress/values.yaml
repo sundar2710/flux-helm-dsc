@@ -1,0 +1,21 @@
+service:
+  type: ClusterIP
+  port: 18631
+  adminPort: 18632
+ingress:
+  enabled: false
+  proto: https
+  # Used to create an Ingress record.
+  domain: example.com
+  host: streamsets
+  annotations:
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+    # ingress.kubernetes.io/rewrite-target: /
+    # kubernetes.io/ingress.allow-http: "true"
+    # kubernetes.io/ingress.class: traefik
+istio:
+  # set to true to use configure Istio Gateway + VirtualService instead of Ingress
+  # requires that the target namespace has automatic sidecar injection enabled
+  enabled: true
+  gateway: http-gateway

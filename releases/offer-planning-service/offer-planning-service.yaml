@@ -1,0 +1,27 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: offer-planning-service-service
+  namespace: dev
+  annotations:
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: glob:dev-*
+spec:
+  releaseName: offer-planning-service-service
+  chart:
+    git: git@github.com:debjyoti-das/flux-helm
+    path: charts/service
+    ref: master
+  values:
+    app:
+      name: offer-planning-service
+      group: offer-planning-service
+      namespace: dev
+      replicaCount: 1
+      container:
+        image: prasantabarik/offer-planning-service:12
+        port: 8094
+      service:
+        type: ClusterIP
+        port: 8094
+      version: v1

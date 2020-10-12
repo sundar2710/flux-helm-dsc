@@ -1,0 +1,45 @@
+{{- if .Values.istio.enabled -}}
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: {{ .Values.istio.gateway }}
+  namespace: debjyoti
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: istio-virtual-services
+  namespace: debjyoti
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - http-gateway                      # 1
+  http:
+    - match:
+        - uri:
+            prefix: /debjyoti/app
+      route:
+        - destination:
+            host: app-pipeline-332488
+            port:
+              number: 8090
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: springhelloworldsvc
+            port:
+              number: 9000
+{{- end -}}
